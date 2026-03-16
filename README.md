@@ -48,7 +48,7 @@ sudo docker-compose up -d db
 Для запуска приложения выполните следующую команду:
 
 ```
-bashsudo docker-compose run --rm app java -jar /app/app.jar <lastUpdateFrom> <lastUpdateTo>
+sudo docker-compose run --rm app java -jar /app/app.jar <lastUpdateFrom> <lastUpdateTo>
 ```
 
 Где `<lastUpdateFrom>` и `<lastUpdateTo>` — это начальная и конечная даты периода выгрузки данных соответственно, вводимые в формате `"dd.MM.yyyy"`.
