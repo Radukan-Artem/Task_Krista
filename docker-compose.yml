@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: taskkristadb
+      POSTGRES_USER: taskkrista_user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  app:
+    build: .
+    volumes:
+      - ./local-archive:/archive
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db/taskkristadb
+      SPRING_DATASOURCE_USERNAME: taskkrista_user
+      SPRING_DATASOURCE_PASSWORD: password
+    networks:
+      - backend-network
+    profiles: ["app"]
+
+networks:
+  backend-network:
+
+volumes:
+  pgdata:
